@@ -20,6 +20,25 @@ void gerarTonsDeCinza(struct Pixel **pixels, int coluna, int linha) {
     }
 }
 
+void gerarTonsDeCinzaESaturado(struct Pixel **pixels, int coluna, int linha) {
+    for (int j = 0; j < linha; j++) {
+        for (int i = 0; i < coluna; i++) {
+            int r = pixels[j][i].R;
+            int g = pixels[j][i].G;
+            int b = pixels[j][i].B;
+
+            int tomCinza = (int)((r * 0.30) + (g * 0.59) + (b * 0.11));
+            int tomCinzaSaturado = (int)(tomCinza * 1.3);
+            if (tomCinzaSaturado > 255) {
+                tomCinzaSaturado = 255;
+            }
+            pixels[j][i].R = tomCinzaSaturado;
+            pixels[j][i].G = tomCinzaSaturado;
+            pixels[j][i].B = tomCinzaSaturado;
+        }
+    }
+}
+
 void criarImagemNegativa(struct Pixel **pixels, int coluna, int linha) {
     for (int j = 0; j < linha; j++) {
         for (int i = 0; i < coluna; i++) {
